@@ -19,6 +19,7 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [pic, setPic] = useState();
   const [picLoading, setPicLoading] = useState(false);
+  import { ChatState } from "../../Context/ChatProvider";
 
   const submitHandler = async () => {
     setPicLoading(true);
@@ -82,6 +83,8 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+      setUser(userInfo);
       history.push("/chats");
     } catch (error) {
       toast({
